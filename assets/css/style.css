@@ -9,6 +9,8 @@ body {
 
 .task-card {
   margin: 0 auto;
+/* make sure draged item is above other items */
+  z-index: 10;
 }
 
 .task-card:hover {

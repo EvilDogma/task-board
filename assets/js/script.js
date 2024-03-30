@@ -92,18 +92,53 @@ function handleDeleteTask(event) {
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
-
+    // get the dragged item and the dropzone and their respective ids. use detatch method to separate the card from its orignal parent
+    let card = $(ui.draggable.detach())
+    let cardId = card.find('.delete-button').attr('id');
+    let dZone = $(event.target)
+    let dZoneId = $(this).parent().attr('id');
+    // append the card to the drop zome
+    card.appendTo(dZone)
+    // Jquery UI adds position styles to the draggable item. This resets the dragged items position relative to the drop zone
+    card.css({
+        position: 'relative',
+        top: 0,
+        left: 0
+    });
+    // Remove Bootstrap color classes from items dropped in the done zone
+    if (dZoneId == 'done') {
+        card.removeClass('bg-danger bg-warning')
+    }
+    // get the index of the dropped task in the task list
+    taskIndex = taskList.findIndex(task => task.taskId == cardId)
+    // update the task group of the dropped task and update the task list in local storage
+    taskList[taskIndex].taskGroup = dZoneId
+    localStorage.setItem('tasks', JSON.stringify(taskList))
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
     // Render tasks from local storage
     renderTaskList()
+     // Listener for draggable
+     $('.swim-lanes').on('mouseover', '.draggable', function () {
+        $(this).draggable({
+        })
+    });
     // Add task listener on click since the button is part of the modal not the form.
     $('#submit').on('click', handleAddTask)
     // reset form on modal close
     $('.close-modal').on('click', resetForm)
     // delete task listener
     $(".swim-lanes").on("click", '.delete-button', handleDeleteTask)
+    // drop listener
+    $(".card-body").droppable({
+        accept: '.task-card',
+        drop: handleDrop
+    });
+    // add sortable
+       $(function () {
+        $('.sortable').sortable();
+    });
 
 });
