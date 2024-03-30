@@ -25,6 +25,42 @@
       <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
+    <!-- Todo: Create a modal with a form to add tasks -->
+    <!-- Added a modal and form using templates from the boot strap documentation and adjusted ids/classes -->
+    <div class="modal" id="formModal">
+      <div id="dialog-form" title="Add Task">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Add Task</h5>
+              <button type="button" class="btn-close close-modal" data-bs-dismiss="modal" aria-label="Close">
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="theForm">
+                <fieldset>
+                  <label for="taskName">Task Name</label>
+                  <input type="text" class="form-control" id="taskName" placeholder="Enter Task Name">
+                  <label for="taskDueDate">Task Due Date</label>
+                  <input type="date" class="form-control" id="taskDueDate">
+                  <label for="taskDescription">Task Description</label>
+                  <textarea class="form-control" id="taskDescription" rows="5"></textarea>
+                </fieldset>
+              </form>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-success close-modal" id="submit" data-bs-dismiss="modal"
+                data-bs-target="#formModal">Add Task</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- end of my added form -->
+
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
         <div id="to-do" class="card border-light mb-3 lane flex-grow-1">
@@ -45,16 +81,16 @@
             <div id="in-progress-cards"></div>
           </div>
         </div>
+      </div>
+      <div class="col-12 col-lg-4 d-flex">
+        <div id="done" class="card border-light mb-3 lane flex-grow-1">
+          <div class="card-header bg-white">
+            <h2 class="card-title mb-1">Done</h2>
+          </div>
+          <div class="card-body bg-light">
+            <div id="done-cards"></div>
+          </div>
         </div>
-        <div class="col-12 col-lg-4 d-flex">
-          <div id="done" class="card border-light mb-3 lane flex-grow-1">
-            <div class="card-header bg-white">
-              <h2 class="card-title mb-1">Done</h2>
-            </div>
-            <div class="card-body bg-light">
-              <div id="done-cards"></div>
-          </div>
-          </div>
       </div>
     </div>
   </div>
