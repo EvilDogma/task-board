@@ -46,8 +46,16 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-
+        // use map to render each task in local storage using creatTaskCard
+        taskList.map(task => createTaskCard(task))
 }
+// added to reset the form
+function resetForm() {
+    $('#taskName').val(''),
+        $('#taskDueDate').val(''),
+        $('#taskDescription').val('')
+}
+
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
@@ -84,7 +92,11 @@ function handleDrop(event, ui) {
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
+    // Render tasks from local storage
+    renderTaskList()
     // Add task listener on click since the button is part of the modal not the form.
     $('#submit').on('click', handleAddTask)
+    // reset form on modal close
+    $('.close-modal').on('click', resetForm)
 
 });
