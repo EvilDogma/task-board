@@ -121,8 +121,10 @@ $(document).ready(function () {
     // Render tasks from local storage
     renderTaskList()
      // Listener for draggable
+    //  added revert invalid to return the draggable to its original position if dropped out of dropzone
      $('.swim-lanes').on('mouseover', '.draggable', function () {
         $(this).draggable({
+             revert: "invalid" 
         })
     });
     // Add task listener on click since the button is part of the modal not the form.
@@ -136,9 +138,4 @@ $(document).ready(function () {
         accept: '.task-card',
         drop: handleDrop
     });
-    // add sortable
-       $(function () {
-        $('.sortable').sortable();
-    });
-
 });
