@@ -46,8 +46,8 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-        // use map to render each task in local storage using creatTaskCard
-        taskList.map(task => createTaskCard(task))
+    // use map to render each task in local storage using creatTaskCard
+    taskList.map(task => createTaskCard(task))
 }
 // added to reset the form
 function resetForm() {
@@ -82,7 +82,12 @@ function handleAddTask(event) {
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {
-
+    //remove item from DOM
+    $(this).parent().remove()
+    //remove item from taskList using filter
+    taskList = taskList.filter(task => task.taskId != this.id)
+    //update local storage
+    localStorage.setItem('tasks', JSON.stringify(taskList))
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
@@ -98,5 +103,7 @@ $(document).ready(function () {
     $('#submit').on('click', handleAddTask)
     // reset form on modal close
     $('.close-modal').on('click', resetForm)
+    // delete task listener
+    $(".swim-lanes").on("click", '.delete-button', handleDeleteTask)
 
 });
