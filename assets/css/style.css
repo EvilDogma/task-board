@@ -6,6 +6,10 @@ body {
 .swim-lanes {
   min-height: 60vh;
 }
+.card-body {
+  /* makesure dropzone is big enough on mobile */
+  min-height: 20vh;
+}
 
 .task-card {
   margin: 0 auto;

@@ -26,10 +26,10 @@ function createTaskCard(task) {
     // Creat card with a template literal string. included draggable class to make draggable and bootstrap classes for styling
     const card = `
         <div class="card task-card ${bgColor} mb-2 draggable">
-            <h4 class = "card-title">${task.taskName}</h4>
+            <h4 class = "card-header">${task.taskName}</h4>
             <p>${task.taskDescription}</p>
             <p>${task.taskDueDate}</p>
-            <button class="btn btn-danger delete-button" id="${task.taskId}">Delete</button>
+            <a class="btn btn-danger delete-button" id="${task.taskId}">Delete</a>
         </div>
         `
     // append it to the correct task group
